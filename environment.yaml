@@ -10,6 +10,5 @@ dependencies:
   - geopandas
   - shapely
   - pyproj
-  - matplotlib
   - pandas
   - pyyaml
