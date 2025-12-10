@@ -1,0 +1,15 @@
+name: new_setup
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - xarray
+  - rioxarray
+  - rasterio
+  - geopandas
+  - shapely
+  - pyproj
+  - matplotlib
+  - pandas
+  - pyyaml

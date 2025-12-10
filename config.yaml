@@ -1,0 +1,54 @@
+# config.yaml
+# Edit these paths and options for your basin / domain.
+
+# -------------------------------------------------------------------
+# Coordinate system and grid
+# -------------------------------------------------------------------
+crs_epsg: "EPSG:32612"        # Desired output CRS
+target_res_m: 100.0           # Output grid resolution (m)
+bbox_expand_pct: 0.0          # Total fractional expansion of rectangular bbox (0.20 ≈ 10% each side)
+
+# -------------------------------------------------------------------
+# Input paths
+# -------------------------------------------------------------------
+dem_path: "/bsuhome/ottolang/leaf-shared/otto_data/iSnobal/basin_setup_code/UpperSnake.tif"
+shape_path: "/bsuhome/ottolang/leaf-shared/otto_data/Shapefiles/PackTrail_Per.shp"
+veg_h_tif_path: "PackTrail_JEDI_VegH.tif"
+lai_path: "/bsuhome/ottolang/Veg_data/LAI_07072025.tif"
+nlcd_tif_path: "/bsuhome/ottolang/leaf-shared/otto_data/NLCD_2024/Clipped_NLCD24_12N.tif"
+
+# -------------------------------------------------------------------
+# Output
+# -------------------------------------------------------------------
+save_output: true
+out_nc_path: "New_topo.nc"
+
+# -------------------------------------------------------------------
+# Resampling choices
+# -------------------------------------------------------------------
+resample_continuous: "bilinear"  # veg height & LAI
+resample_categorical: "nearest"  # NLCD (categorical)
+
+# -------------------------------------------------------------------
+# QC / limits
+# -------------------------------------------------------------------
+vh_max_to_keep: 25.0      # m; > this -> set to 0 (removes unrealistic veg height near water)
+lai_scale: 3.0            # undo LAI symbology scaling from Copernicus site
+lai_floor: 0.001          # avoid log(<=0) / div-by-zero
+
+# -------------------------------------------------------------------
+# Veg k & tau settings
+# -------------------------------------------------------------------
+zero_tau_types: [11, 12, 21, 22, 23, 24, 31, 51, 52, 71, 72, 73, 74, 81, 82, 90, 95, 92]
+use_fixed_decid_mixed: true
+
+deciduous_41_k: 0.025
+deciduous_41_tau: 0.44
+
+mixed_43_k: 0.033
+mixed_43_tau: 0.30
+
+# -------------------------------------------------------------------
+# Plotting
+# -------------------------------------------------------------------
+make_plots: true
