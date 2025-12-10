@@ -14,7 +14,6 @@ from shapely.geometry import box
 from pathlib import Path
 from datetime import datetime
 from pyproj import CRS as PJCRS
-import matplotlib.pyplot as plt
 import yaml  # NEW: for reading config.yaml
 
 # --------------------------- LOAD CONFIG ---------------------------
@@ -59,7 +58,6 @@ DECIDUOUS_41_tau = float(cfg.get("deciduous_41_tau", 0.44))
 MIXED_43_k       = float(cfg.get("mixed_43_k", 0.033))
 MIXED_43_tau     = float(cfg.get("mixed_43_tau", 0.30))
 
-MAKE_PLOTS = bool(cfg.get("make_plots", True))
 
 # -------------------------------------------------------------------
 # -------------------------------------------------------------------
@@ -420,45 +418,6 @@ ds = xr.Dataset(
 for v in ["dem", "veg_type", "veg_tau", "veg_k", "veg_height", "mask"]:
     if v in ds:
         ds[v].attrs["grid_mapping"] = "projection"
-
-# ------------------------------ Plots ------------------------------
-
-if MAKE_PLOTS:
-    ds["veg_height"].plot()
-    plt.xlabel("easting")
-    plt.ylabel("northing")
-    plt.title("veg_height")
-    plt.show()
-
-    ds["veg_type"].plot()
-    plt.xlabel("easting")
-    plt.ylabel("northing")
-    plt.title("veg_type")
-    plt.show()
-
-    ds["veg_k"].plot()
-    plt.xlabel("easting")
-    plt.ylabel("northing")
-    plt.title("veg_k")
-    plt.show()
-
-    ds["veg_tau"].plot()
-    plt.xlabel("easting")
-    plt.ylabel("northing")
-    plt.title("veg_tau")
-    plt.show()
-
-    ds["mask"].plot()
-    plt.xlabel("easting")
-    plt.ylabel("northing")
-    plt.title("mask (1=domain, 0=buffer)")
-    plt.show()
-
-    ds["dem"].plot()
-    plt.xlabel("easting")
-    plt.ylabel("northing")
-    plt.title("dem")
-    plt.show()
 
 # ------------------------------ Save -------------------------------
 
