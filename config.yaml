@@ -11,11 +11,11 @@ bbox_expand_pct: 0.0          # Total fractional expansion of rectangular bbox (
 # -------------------------------------------------------------------
 # Input paths
 # -------------------------------------------------------------------
-dem_path: "/bsuhome/ottolang/leaf-shared/otto_data/iSnobal/basin_setup_code/UpperSnake.tif"
-shape_path: "/bsuhome/ottolang/leaf-shared/otto_data/Shapefiles/PackTrail_Per.shp"
-veg_h_tif_path: "PackTrail_JEDI_VegH.tif"
-lai_path: "/bsuhome/ottolang/Veg_data/LAI_07072025.tif"
-nlcd_tif_path: "/bsuhome/ottolang/leaf-shared/otto_data/NLCD_2024/Clipped_NLCD24_12N.tif"
+dem_path: "Example_input_data/PackTrail_DEM.tif" # Make sure you unzip the file first if using example data, otherwise replace with your file name/ location
+shape_path: "Example_input_data/PackTrail_Per.shp"
+veg_h_tif_path: "Example_input_data/PackTrail_GEDI_VegH"
+lai_path: "Example_input_data/PackTrail_LAI07072025.tif"
+nlcd_tif_path: "Example_input_data/PackTrail_NLCD24.tif"
 
 # -------------------------------------------------------------------
 # Output
@@ -33,13 +33,13 @@ resample_categorical: "nearest"  # NLCD (categorical)
 # QC / limits
 # -------------------------------------------------------------------
 vh_max_to_keep: 25.0      # m; > this -> set to 0 (removes unrealistic veg height near water)
-lai_scale: 3.0            # undo LAI symbology scaling from Copernicus site
-lai_floor: 0.001          # avoid log(<=0) / div-by-zero
+lai_scale: 3.0            # undo LAI symbology scaling from Copernicus site (only if downloading directly from data viewer using this product). Set to 1 otherwise. 
+lai_floor: 0.001          # Min LAI to avoid log(<=0) / div-by-zero
 
 # -------------------------------------------------------------------
 # Veg k & tau settings
 # -------------------------------------------------------------------
-zero_tau_types: [11, 12, 21, 22, 23, 24, 31, 51, 52, 71, 72, 73, 74, 81, 82, 90, 95, 92]
+zero_tau_types: [11, 12, 21, 22, 23, 24, 31, 51, 52, 71, 72, 73, 74, 81, 82, 90, 95, 92]  #NLCD canopy types set to tau = 0, k =1
 use_fixed_decid_mixed: true
 
 deciduous_41_k: 0.025
